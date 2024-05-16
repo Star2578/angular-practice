@@ -1,0 +1,34 @@
+<form [formGroup]="group" [appSwitch]="isLight">
+    <h1>User Profile</h1>
+    <div class="form-element">
+        <label for="firstname">Firstname</label>
+        <input type="text" name="firstname" formControlName="firstname">
+    </div>
+    <div class="form-element">
+        <label for="middlename">Middlename</label>
+        <input type="text" name="middlename" formControlName="middlename">
+    </div>
+    <div class="form-element">
+        <label for="lastname">Lastname</label>
+        <input type="text" name="lastname" formControlName="lastname">
+    </div>
+    <div class="form-element">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input type="date" name="dateOfBirth" formControlName="dateOfBirth" [max]="maxDate">
+    </div>
+    <div class="form-element">
+        <label for="age">Age</label>
+        <input type="number" name="age" formControlName="age">
+    </div>
+    <div class="form-element">
+        <label for="gender">Gender</label>
+        <select name="gender" formControlName="gender">
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <button type="submit" [disabled]="group.invalid" (click)="onSubmit()" [appFlyaway]="isScared"
+    (mouseenter)="onMouseEnter()">Submit</button>
+</form>

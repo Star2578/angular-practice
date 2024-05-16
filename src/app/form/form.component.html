@@ -1,0 +1,16 @@
+<div id="bg-green">
+    <form class="form-container" [formGroup]="group" [appSwitch]="isLight">
+        <h1>Log In</h1>
+        <div class="form-element">
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Enter your email" formControlName="email">
+        </div>
+        <div class="form-element">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter your password" formControlName="password">
+        </div>
+    
+        <button type="submit" [disabled]="group.invalid" (click)="onSubmit()" [appFlyaway]="isScared"
+        (mouseenter)="onMouseEnter()">Submit</button>
+    </form>
+</div>
