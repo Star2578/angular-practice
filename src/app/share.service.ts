@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,13 @@ export class ShareService {
     return this._isLight.value;
   }
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   toggleLightMode() {
     this._isLight.next(!this._isLight.value);
+  }
+
+  getUser(): Observable<any> {
+    return this.http.get<any>('https://randomuser.me/api/');
   }
 }

@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, SwitchDirective, FlyawayDirective],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrl: './form.component.css',
 })
 export class FormComponent {
   isLight!: boolean;

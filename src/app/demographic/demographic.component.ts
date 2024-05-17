@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SwitchDirective } from '../directives/switch.directive';
 import { FlyawayDirective } from '../directives/flyaway.directive';
-import { Subscription } from 'rxjs/internal/Subscription';
+import { Subscription } from 'rxjs';
 import { ShareService } from '../share.service';
 import { DateFormatPipe } from '../pipes/date-format.pipe';
 
@@ -17,7 +17,9 @@ import { DateFormatPipe } from '../pipes/date-format.pipe';
 export class DemographicComponent {
   isLight!: boolean;
   isScared!: boolean;
-  private subscription!: Subscription;
+  private lightSubscription!: Subscription;
+  private dateOfBirthSubscription!: Subscription;
+  private ageSubscription!: Subscription;
   private isMouseOver = false;
   maxDate: string = new Date().toISOString().split('T')[0];
 
@@ -33,18 +35,18 @@ export class DemographicComponent {
   constructor(private shareService: ShareService) { }
 
   ngOnInit(): void {
-    this.subscription = this.shareService.isLight$.subscribe(isLight => {
+    this.lightSubscription = this.shareService.isLight$.subscribe(isLight => {
       this.isLight = isLight;
     });
 
     // Add value change listener to dateOfBirth form control
-    this.group.get('dateOfBirth')!.valueChanges.subscribe(value => {
+    this.dateOfBirthSubscription = this.group.get('dateOfBirth')!.valueChanges.subscribe(value => {
       if (value) {
         this.group.get('age')!.setValue(this.getAge(value));
       }
     });
 
-    this.group.get('age')!.valueChanges.subscribe(value => {
+    this.ageSubscription = this.group.get('age')!.valueChanges.subscribe(value => {
       let dateOfBirth = this.group.get('dateOfBirth')?.value;
       
       if (value != this.getAge(dateOfBirth)) {
@@ -63,7 +65,7 @@ export class DemographicComponent {
 
   onSubmit() {
     console.log("success");
-    window.location.href = "/demographic";
+    window.location.href = "/dashboard";
   }
 
   private getAge(dateOfBirth: string): number {
@@ -81,8 +83,14 @@ export class DemographicComponent {
 
   // Unsubscribe when it's not needed anymore
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.lightSubscription) {
+      this.lightSubscription.unsubscribe();
+    }
+    if (this.dateOfBirthSubscription) {
+      this.dateOfBirthSubscription.unsubscribe();
+    }
+    if (this.ageSubscription) {
+      this.ageSubscription.unsubscribe();
     }
   }
 }

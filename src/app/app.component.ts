@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { SwitchDirective } from './directives/switch.directive';
 import { ShareService } from './share.service';
 import { Subscription } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormComponent, CommonModule, SwitchDirective],
+  imports: [RouterOutlet, FormComponent, CommonModule, SwitchDirective, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers: [ShareService]
 })
 export class AppComponent {
   title = 'dashboard';
