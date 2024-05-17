@@ -1,4 +1,9 @@
-<div>
+<div class="title" [appSwitch]="isLight">
+    <h1>Spy-where.com</h1>
+    <h2>Everyone has the right to freedom and security</h2>
+</div>
+
+<div class="container">
     <app-dashboard-options (optionSelected)="onOptionSelected($event)"></app-dashboard-options>
     <app-dashboard-display [user]="user" [selectedOption]="selectedOption"></app-dashboard-display>
 </div>

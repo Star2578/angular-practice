@@ -1,5 +1,6 @@
-<div [appSwitch]="isLight">
+<div [appSwitch]="isLight" class="options-container">
     <button (click)="selectOption('profile')">Profile</button>
     <button (click)="selectOption('address')">Address</button>
     <button (click)="selectOption('contact')">Contact</button>
+    <button (click)="reload()">New Target</button>
 </div>

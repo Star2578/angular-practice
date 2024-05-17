@@ -29,6 +29,10 @@ export class DashboardOptionsComponent {
     this.optionSelected.emit(option);
   }
 
+  reload() {
+    window.location.reload();
+  }
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
