@@ -4,11 +4,12 @@ import { DashboardDisplayComponent } from '../dashboard-display/dashboard-displa
 import { SwitchDirective } from '../directives/switch.directive';
 import { ShareService } from '../share.service';
 import { Subscription } from 'rxjs';
+import { RecursiveWarningDirective } from '../directives/recursive-warning.directive';
 
 @Component({
   selector: 'app-dashboard-options',
   standalone: true,
-  imports: [CommonModule, DashboardDisplayComponent, SwitchDirective],
+  imports: [CommonModule, DashboardDisplayComponent, SwitchDirective, RecursiveWarningDirective],
   templateUrl: './dashboard-options.component.html',
   styleUrl: './dashboard-options.component.css',
 })

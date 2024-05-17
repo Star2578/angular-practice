@@ -3,4 +3,7 @@
     <button (click)="selectOption('address')">Address</button>
     <button (click)="selectOption('contact')">Contact</button>
     <button (click)="reload()">New Target</button>
+    <button *appRecursiveWarning="'bruh', warning as w">
+        {{ w }}
+    </button>
 </div>
